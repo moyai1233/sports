@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>축구 위젯 테스트</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6f9;
+            color: #14283c;
+            font: 16px/1.6 system-ui, sans-serif
+        }
+
+        main {
+            max-width: 1050px;
+            margin: 48px auto;
+            padding: 0 20px
+        }
+
+        header,
+        panel {
+            display: block;
+            background: white;
+            border: 1px solid #dce4ec;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px
+        }
+
+        h1 {
+            margin: 0 0 8px
+        }
+
+        p {
+            color: #53677a
+        }
+
+        form {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        label {
+            flex: 1;
+            min-width: 220px
+        }
+
+        input,
+        button {
+            font: inherit;
+            border-radius: 8px;
+            padding: 11px 14px
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            border: 1px solid #a9b9c7
+        }
+
+        button {
+            background: #126c57;
+            color: white;
+            border: 0;
+            align-self: end;
+            cursor: pointer
+        }
+
+        button:disabled {
+            opacity: .5
+        }
+
+        small {
+            color: #53677a
+        }
+
+        #status {
+            min-height: 26px
+        }
+
+        a {
+            color: #126c57
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <form id="start">
+                <label>API 키<input id="key" type="password" autocomplete="off" required
+                        placeholder="전달하신 API 키를 붙여넣으세요"></label>
+                <button id="load" type="submit">위젯 불러오기</button>
+            </form>
+            <p id="status" role="status">키는 이 페이지에 저장하지 않으며 API-SPORTS에 전달됩니다.</p>
+            <small>표시 언어: 영어 · 자동 새로고침 없음 · 실제 데이터 요청은 API 사용량에 포함됩니다.</small>
+        </header>
+        <panel id="widgets" hidden></panel>
+        <p><a href="https://api-sports.io/documentation/widgets/v3" target="_blank" rel="noopener noreferrer">공식 위젯
+                문서</a></p>
+    </main>
+    <script>
+        document.getElementById('start').addEventListener('submit', async event => {
+            event.preventDefault();
+            const key = document.getElementById('key').value.trim();
+            if (!key) return;
+            const status = document.getElementById('status');
+            const button = document.getElementById('load');
+            const host = document.getElementById('widgets');
+            button.disabled = true;
+            status.textContent = '위젯 스크립트를 불러오는 중입니다…';
+            const config = document.createElement('api-sports-widget');
+            for (const [name, value] of Object.entries({ type: 'config', key, sport: 'football', lang: 'en', 'target-game': 'modal' })) config.setAttribute('data-' + name, value);
+            const games = document.createElement('api-sports-widget');
+            games.setAttribute('data-type', 'games');
+            host.replaceChildren(config, games);
+            host.hidden = false;
+            document.getElementById('key').value = '';
+            try {
+                await import('https://widgets.api-sports.io/3.1.0/widgets.js');
+                await customElements.whenDefined('api-sports-widget');
+                status.textContent = '위젯 스크립트 로드 완료. 데이터 상태와 오류는 아래 위젯에서 확인하세요. 다시 테스트하려면 페이지를 새로고침하세요.';
+            } catch (error) {
+                status.textContent = '위젯 스크립트를 불러오지 못했습니다. 네트워크 연결을 확인하고 다시 시도하세요.';
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
