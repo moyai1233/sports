@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<link rel="StyleSheet" href="./table.css" type="text/css" />
+
+<table>
+  <colgroup>
+    <col width="180" />
+    <col width="180" />
+    <col width="180" />
+    <col width="180" />
+    <col width="180" />
+  </colgroup>
+  <tr align="center">
+    <th>팀명</th>
+    <td colspan="2">팀명</td>
+    <th>회의일</th>
+    <td>2026.11.11</td>
+  </tr>
+  <tr align="center">
+    <th>참가자</th>
+    <td>20233124 김경욱</td>
+    <td>20233045 박민서</td>
+    <td>20233071 조현우</td>
+    <td>20253280 방성철</td>
+  </tr>
+  <tr align="center">
+    <th>회의주제</th>
+    <td colspan="4">회의록 작성방법 논의</td>
+  </tr>
+  <tr>
+    <th>회의내용</th>
+    <td colspan="4" style="border-bottom: 1px solid white"></td>
+  </tr>
+  <tr>
+    <td colspan="5">
+      <br />
+      <p>
+
+      <p>■ 회의 안건</p>
+      <ol>
+        <li>DB를 어떻게 구성 할 것인가?</li>
+        <li>어떤 기능 추가 할 것인가?</li>
+      </ol>
+      <br>
+      <p>■ 주요 논의 내용</p>
+      <ol>
+        <li>DB 구성</li>
+        <ul type="circle">
+            <li>사용자 ID와 Password
+              <ul><li>
+                user_id
+              </li>
+            <li>user_password</li>
+            </ul>
+            </li>
+            <li>사용자가 즐겨찾기한 팀 또는 선수
+              <ul>
+                <li>
+                  FavoriteTeamId
+                </li>
+                <li>
+                  FavoritePlayerId
+                </li>
+              </ul>
+            </li>
+            <li>기다리고 있는 경기
+              <ul>
+                <li>MatchId</li>
+              </ul>
+            </li>
+            <li>
+              경기 리뷰
+              <ul>
+                <li>MatchReview</li>
+              </ul>
+            </li>
+            <li>추천 및 비추천
+              <ul>
+                <li>Recommend</li>
+              </ul>
+            </li>
+            <li>선수별 평가
+              <ul>
+                <li>PlayerReview</li>
+              </ul>
+            </li>
+            <li>선수 정보 DB에 저장(현실 구현 가능 여부에 따라 결정)</li> 
+        </ul>
+        <li>기능 추가</li>
+        <ul type="circle">
+            <li>상세 매치 기록 및 타임라인</li>
+            <li>선수 및 통계 데이터</li>
+            <li>승부예측 및 데이터 시각화</li>
+            <li>마이페이지 및 즐겨찾기</li>
+            <br>
+            <li>추가된 기능</li>
+            <li>선수 비교(선수 정보 DB에 저장할시)</li>
+            <li>경기 리뷰</li>
+            <li>추천 및 비추천</li>
+            <li>선수별 평가</li>
+            <li>사용자가 즐겨찾기한 팀 또는 선수</li>
+            <li>기다리고 있는 경기</li>
+        </ul>
+      </ol>
+      <br>
+      </ol>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </td>
+  </tr>
+</table>
