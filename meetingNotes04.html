@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<link rel="StyleSheet" href="./table.css" type="text/css" />
+
+<table>
+  <colgroup>
+    <col width="180" />
+    <col width="180" />
+    <col width="180" />
+    <col width="180" />
+    <col width="180" />
+  </colgroup>
+  <tr align="center">
+    <th>팀명</th>
+    <td colspan="2">팀명</td>
+    <th>회의일</th>
+    <td>2026.11.19</td>
+  </tr>
+  <tr align="center">
+    <th>참가자</th>
+    <td>20233124 김경욱</td>
+    <td>20233045 박민서</td>
+    <td>20233071 조현우</td>
+    <td>20253280 방성철</td>
+  </tr>
+  <tr align="center">
+    <th>회의주제</th>
+    <td colspan="4">화면 설계 논의 및 밑그림 작성</td>
+  </tr>
+  <tr>
+    <th>회의내용</th>
+    <td colspan="4" style="border-bottom: 1px solid white"></td>
+  </tr>
+  <tr>
+    <td colspan="5">
+      <br />
+
+      <p>■ 회의 안건</p>
+      <ol>
+        <li>메인 화면을 어떻게 구성할 것인가?</li>
+        <li>선수 이적 검색 화면을 어떻게 구성할 것인가?</li>
+        <li>경기 일정 화면을 어떻게 구성할 것인가?</li>
+      </ol>
+      <br />
+
+      <p>■ 주요 논의 내용</p>
+      <ol>
+        <li>메인 화면
+          <ul type="circle">
+            <li>상단: 로고, 검색창, 로그인(아이디/비밀번호)</li>
+            <li>좌측: 즐겨찾기한 리그 목록, 나의 팀, 팀 추가</li>
+            <li>중앙: 날짜 이동 및 캘린더, 라이브, 시간순, 인기순 정렬</li>
+            <li>중앙: 지난 경기 / 진행 중 경기 / 예정된 경기 목록</li>
+            <li>우측: 리그 순위표(경기 수, 승, 무, 패), 슬라이드로 리그 전환</li>
+          </ul>
+          <p><img src="./img/meeting04_main.jpg" alt="메인 화면 스케치" width="450" /></p>
+        </li>
+        <li>선수 이적 검색 화면
+          <ul type="circle">
+            <li>상단: 로고(홈 화면 이동), 메뉴바</li>
+            <li>좌측 검색 조건: 이름 검색, 리그 선택, 이적 전 팀 선택, 이적한 팀 선택, 포지션 선택</li>
+            <li>범위 조건: 이적 시즌, 이적료 범위, 이적 당시 나이</li>
+            <li>우측: 검색 결과를 이적료 순 막대그래프로 표시</li>
+          </ul>
+          <p><img src="./img/meeting04_search.jpg" alt="선수 이적 검색 화면 스케치" width="800" /></p>
+        </li>
+        <li>경기 일정 화면
+          <ul type="circle">
+            <li>오늘의 주요 경기: 요일별 탭, 리그별 경기, 상세 정보 버튼</li>
+            <li>전체 경기 일정: 지난 경기 / 예정 경기 선택, 날짜,시간,경기장,홈팀,스코어,원정팀 표</li>
+          </ul>
+          <p><img src="./img/meeting04_schedule.jpg" alt="경기 일정 화면 스케치" width="450" /></p>
+        </li>
+      </ol>
+      <br />
+
+      <p>■ 향후 실행 계획</p>
+      <ol>
+        <li>스케치를 바탕으로 HTML/CSS 화면 구현</li>
+        <li>각 화면에 스포츠 API 데이터 연동</li>
+        <li>이적 검색 조건을 DB 쿼리로 처리하고 결과 그래프 구현</li>
+      </ol>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </td>
+  </tr>
+</table>
