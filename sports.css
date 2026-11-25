@@ -83,3 +83,144 @@ body {
 .page h1 + p {
     margin-top: 1rem;
 }
+
+.ui-card {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: white;
+    border-radius: 1rem;
+}
+
+.ui-field {
+    display: grid;
+    gap: 0.375rem;
+    max-width: 28rem;
+    font-weight: 650;
+}
+
+.ui-input,
+.ui-button {
+    min-height: 2.75rem;
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--text);
+    border-radius: 0.625rem;
+    color: inherit;
+    font: inherit;
+}
+
+.ui-input {
+    width: 100%;
+    background: white;
+    font-weight: 400;
+}
+
+.ui-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-top: 1rem;
+}
+
+.ui-button {
+    background: var(--text);
+    color: white;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.ui-button--secondary {
+    background: var(--selected);
+    color: var(--text);
+}
+
+.ui-button:hover:not(:disabled) {
+    background: var(--hover);
+    color: var(--text);
+}
+
+.ui-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.ui-button:focus-visible,
+.ui-input:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+}
+
+.ui-stack,
+.ui-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.ui-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.ui-stack fieldset {
+    margin: 0;
+    border: 1px solid var(--text);
+    border-radius: 0.625rem;
+}
+
+.ui-stack fieldset label {
+    display: inline-block;
+    margin-right: 0.75rem;
+}
+
+.ui-badge {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    background: var(--background);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+.ui-notice {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+}
+
+.ui-badge--success {
+    background: var(--selected);
+}
+
+.ui-badge--notice {
+    background: var(--hover);
+}
+
+.ui-table-scroll {
+    overflow-x: auto;
+    border-radius: 1rem;
+    background: white;
+}
+
+.ui-table {
+    width: 100%;
+    min-width: 32rem;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.ui-table caption,
+.ui-table th,
+.ui-table td {
+    padding: 0.75rem 1rem;
+}
+
+.ui-table caption {
+    font-weight: 650;
+    text-align: left;
+}
+
+.ui-table thead {
+    background: var(--text);
+    color: white;
+}
+
+.ui-table tbody tr:nth-child(even) {
+    background: var(--background);
+}
