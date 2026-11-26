@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024-2025 프리미어리그 순위표</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --line: #e5e9f0;
+      --text: #1b222c;
+      --muted: #687385;
+      --accent: #3d195b;
+      --win: #16a34a;
+      --draw: #64748b;
+      --lose: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .epl-card {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    }
+
+    .epl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .epl-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .epl-season {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      min-width: 620px;
+    }
+
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    th.team-col, td.team-col {
+      text-align: left;
+    }
+
+    tbody tr:hover {
+      background: #f9fbff;
+    }
+
+    .rank-cell {
+      font-weight: 700;
+      width: 44px;
+    }
+
+    .team-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .team-box img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .points-cell {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .form-list {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .form-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .form-badge.W { background: var(--win); }
+    .form-badge.D { background: var(--draw); }
+    .form-badge.L { background: var(--lose); }
+    .form-badge.empty {
+      background: #e2e8f0;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <section class="epl-card" aria-label="2024-2025 프리미어리그 순위표">
+    <div class="epl-header">
+      <h2 class="epl-title">Premier League</h2>
+      <span class="epl-season">2024-2025 시즌</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th class="team-col">팀</th>
+            <th>경기</th>
+            <th>승</th>
+            <th>무</th>
+            <th>패</th>
+            <th>득실차</th>
+            <th>승점</th>
+            <th>최근 5경기</th>
+          </tr>
+        </thead>
+        <tbody id="epl-standings-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    const EPL_24_25_STANDINGS = [
+      { rank: 1, logo: "https://media.api-sports.io/football/teams/40.png", team_name: "Liverpool", played: 38, win: 25, draw: 9, lose: 4, goals_for: 86, goals_against: 41, goals_diff: 45, points: 84, form: "DLDLW" },
+      { rank: 2, logo: "https://media.api-sports.io/football/teams/42.png", team_name: "Arsenal", played: 38, win: 20, draw: 14, lose: 4, goals_for: 69, goals_against: 34, goals_diff: 35, points: 74, form: "WWDLD" },
+      { rank: 3, logo: "https://media.api-sports.io/football/teams/50.png", team_name: "Manchester City", played: 38, win: 21, draw: 8, lose: 9, goals_for: 72, goals_against: 44, goals_diff: 28, points: 71, form: "WWDWW" },
+      { rank: 4, logo: "https://media.api-sports.io/football/teams/49.png", team_name: "Chelsea", played: 38, win: 20, draw: 9, lose: 9, goals_for: 64, goals_against: 43, goals_diff: 21, points: 69, form: "WWLWW" },
+      { rank: 5, logo: "https://media.api-sports.io/football/teams/34.png", team_name: "Newcastle", played: 38, win: 20, draw: 6, lose: 12, goals_for: 68, goals_against: 47, goals_diff: 21, points: 66, form: "LLWDW" },
+      { rank: 6, logo: "https://media.api-sports.io/football/teams/66.png", team_name: "Aston Villa", played: 38, win: 19, draw: 9, lose: 10, goals_for: 58, goals_against: 51, goals_diff: 7, points: 66, form: "LWWWL" },
+      { rank: 7, logo: "https://media.api-sports.io/football/teams/65.png", team_name: "Nottingham Forest", played: 38, win: 19, draw: 8, lose: 11, goals_for: 58, goals_against: 46, goals_diff: 12, points: 65, form: "LWDDL" },
+      { rank: 8, logo: "https://media.api-sports.io/football/teams/51.png", team_name: "Brighton", played: 38, win: 16, draw: 13, lose: 9, goals_for: 66, goals_against: 59, goals_diff: 7, points: 61, form: "WWWDW" },
+      { rank: 9, logo: "https://media.api-sports.io/football/teams/35.png", team_name: "Bournemouth", played: 38, win: 15, draw: 11, lose: 12, goals_for: 58, goals_against: 46, goals_diff: 12, points: 56, form: "WLLWD" },
+      { rank: 10, logo: "https://media.api-sports.io/football/teams/55.png", team_name: "Brentford", played: 38, win: 16, draw: 8, lose: 14, goals_for: 66, goals_against: 57, goals_diff: 9, points: 56, form: "DLWWW" },
+      { rank: 11, logo: "https://media.api-sports.io/football/teams/36.png", team_name: "Fulham", played: 38, win: 15, draw: 9, lose: 14, goals_for: 54, goals_against: 54, goals_diff: 0, points: 54, form: "LWLLW" },
+      { rank: 12, logo: "https://media.api-sports.io/football/teams/52.png", team_name: "Crystal Palace", played: 38, win: 13, draw: 14, lose: 11, goals_for: 51, goals_against: 51, goals_diff: 0, points: 53, form: "DWWDD" },
+      { rank: 13, logo: "https://media.api-sports.io/football/teams/45.png", team_name: "Everton", played: 38, win: 11, draw: 15, lose: 12, goals_for: 42, goals_against: 44, goals_diff: -2, points: 48, form: "WWWDL" },
+      { rank: 14, logo: "https://media.api-sports.io/football/teams/48.png", team_name: "West Ham", played: 38, win: 11, draw: 10, lose: 17, goals_for: 46, goals_against: 62, goals_diff: -16, points: 43, form: "WLWDL" },
+      { rank: 15, logo: "https://media.api-sports.io/football/teams/33.png", team_name: "Manchester United", played: 38, win: 11, draw: 9, lose: 18, goals_for: 44, goals_against: 54, goals_diff: -10, points: 42, form: "WLLLD" },
+      { rank: 16, logo: "https://media.api-sports.io/football/teams/39.png", team_name: "Wolves", played: 38, win: 12, draw: 6, lose: 20, goals_for: 54, goals_against: 69, goals_diff: -15, points: 42, form: "DLLLW" },
+      { rank: 17, logo: "https://media.api-sports.io/football/teams/47.png", team_name: "Tottenham", played: 38, win: 11, draw: 5, lose: 22, goals_for: 64, goals_against: 65, goals_diff: -1, points: 38, form: "LLLDL" },
+      { rank: 18, logo: "https://media.api-sports.io/football/teams/46.png", team_name: "Leicester", played: 38, win: 6, draw: 7, lose: 25, goals_for: 33, goals_against: 80, goals_diff: -47, points: 25, form: "LWDWL" },
+      { rank: 19, logo: "https://media.api-sports.io/football/teams/57.png", team_name: "Ipswich", played: 38, win: 4, draw: 10, lose: 24, goals_for: 36, goals_against: 82, goals_diff: -46, points: 22, form: "LLLDL" },
+      { rank: 20, logo: "https://media.api-sports.io/football/teams/41.png", team_name: "Southampton", played: 38, win: 2, draw: 6, lose: 30, goals_for: 26, goals_against: 86, goals_diff: -60, points: 12, form: "LLDLL" }
+    ];
+
+    function renderForm(formStr) {
+      if (!formStr) return `<span class="form-badge empty">-</span>`;
+      return formStr.split("").map((ch) => {
+        const valid = ["W", "D", "L"].includes(ch);
+        return `<span class="form-badge ${valid ? ch : "empty"}">${ch}</span>`;
+      }).join("");
+    }
+
+    function formatDiff(diff) {
+      const num = Number(diff ?? 0);
+      return num > 0 ? `+${num}` : String(num);
+    }
+
+    function renderStandings(rows) {
+      const tbody = document.getElementById("epl-standings-body");
+      tbody.innerHTML = rows.map((row, idx) => `
+        <tr>
+          <td class="rank-cell">${row.rank ?? idx + 1}</td>
+          <td class="team-col">
+            <div class="team-box">
+              ${row.logo ? `<img src="${row.logo}" alt="${row.team_name}" loading="lazy" />` : ""}
+              <span>${row.team_name}</span>
+            </div>
+          </td>
+          <td>${row.played}</td>
+          <td>${row.win}</td>
+          <td>${row.draw}</td>
+          <td>${row.lose}</td>
+          <td>${formatDiff(row.goals_diff)}</td>
+          <td class="points-cell">${row.points}</td>
+          <td><div class="form-list">${renderForm(row.form)}</div></td>
+        </tr>
+      `).join("");
+    }
+
+    renderStandings(EPL_24_25_STANDINGS);
+  </script>
+</body>
+</html>
