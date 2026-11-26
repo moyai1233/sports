@@ -1,0 +1,18 @@
+/* 로그인·회원가입 전용 보완 스타일
+   기본은 공통 sports.css를 쓰고, 공통 파일에 없는 것만 여기에 둠 */
+
+.auth-card {
+    max-width: 30rem;
+    margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+/* 알림 색상 (sports.css의 .ui-notice에는 배경색이 없음) */
+.ui-notice--error   { background: var(--hover); }
+.ui-notice--success { background: var(--selected); }
+
+/* <a>를 버튼 모양으로 쓸 때 */
+a.ui-button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
