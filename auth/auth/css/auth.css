@@ -1,0 +1,89 @@
+/* 로그인·회원가입 전용 보완 스타일
+   기본은 공통 sports.css를 쓰고, 공통 파일에 없는 것만 여기에 둠 */
+
+.auth-card {
+    max-width: 30rem;
+    margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+/* 알림 색상 (sports.css의 .ui-notice에는 배경색이 없음) */
+.ui-notice--error   { background: var(--hover); }
+.ui-notice--success { background: var(--selected); }
+
+/* <a>를 버튼 모양으로 쓸 때 */
+a.ui-button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* 로그인 화면 하단 '비밀번호 찾기' 링크 */
+.page .auth-forgot {   /* .page p 규칙보다 우선 */
+    margin: 1.25rem 0 0;
+    font-size: 0.875rem;
+}
+.auth-forgot a {
+    color: inherit;
+    text-decoration: underline;
+}
+.auth-forgot a:hover {
+    color: #1f4e9c;
+}
+
+/* 비밀번호 찾기 창 */
+.auth-dialog {
+    width: min(92vw, 26rem);
+    padding: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    color: var(--text);
+}
+.auth-dialog::backdrop {
+    background: rgb(0 0 0 / 0.45);
+}
+.auth-dialog__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.auth-dialog h2 {
+    margin: 0;
+    font-size: 1.375rem;
+}
+.auth-dialog__close {
+    width: 2.25rem;
+    height: 2.25rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--background);
+    color: var(--text);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.auth-dialog__close:hover {
+    background: var(--hover);
+}
+.page .auth-dialog__desc {
+    margin: 0.75rem 0 1rem;
+    font-size: 0.875rem;
+}
+.page .auth-dialog .ui-notice {
+    margin: 0;
+    font-size: 0.875rem;
+}
+.auth-dialog__submit {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+.auth-dialog__back {
+    display: block;
+    margin: 1rem auto 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
